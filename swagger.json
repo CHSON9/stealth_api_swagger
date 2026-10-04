@@ -1,81 +1,127 @@
 {
-  "swagger": "2.0",
-  "info": {
-    "title": "2학기 스텔스 비전 프로젝트 API 명세서",
-    "description": "프론트엔드 연동용 REST API 및 Socket.io 명세서",
-    "version": "1.0.0"
+  "definitions": {
+
   },
-  "host": "localhost:5000",
-  "basePath": "/",
-  "schemes": ["http"],
+  "info": {
+    "description": "powered by Flasgger",
+    "termsOfService": "/tos",
+    "title": "A swagger API",
+    "version": "0.0.1"
+  },
   "paths": {
     "/api/persons": {
       "get": {
-        "tags": ["Persons"],
-        "summary": "등록 인물 목록 조회",
         "description": "사전 등록된 인물 3명(채현, 은아, 혜민)의 기본 정보 및 대표 사진 URL을 조회합니다.",
         "responses": {
           "200": {
-            "description": "조회 성공",
+            "description": "인물 목록 조회 성공",
             "schema": {
-              "type": "object",
               "properties": {
-                "status": { "type": "string", "example": "success" },
                 "persons": {
-                  "type": "array",
                   "items": {
-                    "type": "object",
                     "properties": {
-                      "person_id": { "type": "string", "example": "person_01" },
-                      "name": { "type": "string", "example": "채현" },
-                      "representative_image_url": { "type": "string", "example": "/uploads/persons/chaehyeon_rep.jpg" }
+                      "name": {
+                        "example": "채현",
+                        "type": "string"
+                      },
+                      "person_id": {
+                        "example": "person_01",
+                        "type": "string"
+                      },
+                      "representative_image_url": {
+                        "example": "/uploads/persons/chaehyeon_rep.jpg",
+                        "type": "string"
+                      }
                     }
-                  }
+                  },
+                  "type": "array"
+                },
+                "status": {
+                  "example": "success",
+                  "type": "string"
                 }
               }
             }
+          },
+          "500": {
+            "description": "서버 내부 에러"
           }
-        }
+        },
+        "summary": "등록 인물 목록 조회 API",
+        "tags": [
+          "Persons"
+        ]
       }
     },
     "/api/persons/{person_id}/photos": {
       "get": {
-        "tags": ["Persons"],
-        "summary": "인물별 등록 사진 조회",
-        "description": "선택한 인물의 전체 사진(20~30장) 목록을 조회합니다.",
+        "description": "선택한 인물(person_id)의 등록된 전체 사진(20~30장) 목록을 조회합니다.",
         "parameters": [
           {
-            "name": "person_id",
+            "description": "조회할 인물의 고유 식별자 (예; person_01)",
             "in": "path",
+            "name": "person_id",
             "required": true,
-            "type": "string",
-            "description": "인물 고유 ID"
+            "type": "string"
           }
         ],
         "responses": {
           "200": {
-            "description": "조회 성공",
+            "description": "사진 목록 조회 성공",
             "schema": {
-              "type": "object",
               "properties": {
-                "status": { "type": "string", "example": "success" },
-                "person_id": { "type": "string", "example": "person_01" },
-                "name": { "type": "string", "example": "채현" },
+                "name": {
+                  "example": "채현",
+                  "type": "string"
+                },
+                "person_id": {
+                  "example": "person_01",
+                  "type": "string"
+                },
                 "photos": {
-                  "type": "array",
                   "items": {
-                    "type": "object",
                     "properties": {
-                      "photo_id": { "type": "string", "example": "photo_01" },
-                      "image_url": { "type": "string", "example": "/uploads/persons/chaehyeon_01.jpg" }
+                      "image_url": {
+                        "example": "/uploads/persons/chaehyeon_01.jpg",
+                        "type": "string"
+                      },
+                      "photo_id": {
+                        "example": "photo_01",
+                        "type": "string"
+                      }
                     }
-                  }
+                  },
+                  "type": "array"
+                },
+                "status": {
+                  "example": "success",
+                  "type": "string"
                 }
               }
             }
+          },
+          "404": {
+            "description": "해당 인물을 찾을 수 없음"
+          },
+          "500": {
+            "description": "서버 내부 에러"
           }
-        }
+        },
+        "summary": "인물별 등록 사진 조회 API",
+        "tags": [
+          "Persons"
+        ]
+      }
+    },
+    "/socket_docs": {
+      "get": {
+        "description": "이 섹션은 2학기 이동형 카메라 투명화 비전 시스템의 Socket.io 이벤트를 정의합니다.\n\n### [1] 클라이언트 -\u003E 서버 (Client -\u003E Server Events)\n\n1. **`register_client`**\n   - **설명**: 프론트 접속 시 기기 역할(핸드폰/노트북)을 등록합니다.\n   - **데이터 규격**:\n     ```json\n     {\n       \"role\": \"sender\" // 핸드폰(송출자)일 경우 \"sender\", 노트북(시청자)일 경우 \"viewer\"\n     }\n     ```\n   \n2. **`image_frame`**\n   - **설명**: 핸드폰 카메라 웹뷰에서 원본 이미지 프레임을 초당 송출합니다.\n   - **데이터 규격**:\n     ```json\n     {\n       \"image\": \"data:image/jpeg;base64,.....(Base64 문자열)\",\n       \"camera_id\": \"cam1\"\n     }\n     ```\n     \n---\n\n### [2] 서버 -\u003E 클라이언트 (Server -\u003E Client Events)\n\n1. **`processed_frame`**\n   - **설명**: AI 파이프라인에서 투명화/배경복원이 완료된 처리 영상 프레임을 노트북(`viewer`)으로 전송합니다.\n   - **데이터 규격**:\n     ```json\n     {\n       \"result_image\": \"data:image/jpeg;base64,.....(Base64 문자열)\"\n     }\n     ```\n   \n2. **`stream_status`**\n   - **설명**: 현재 영상 처리 및 송출 상태를 알려줍니다.\n   - **데이터 규격**:\n     ```json\n     {\n       \"status\": \"streaming\" // waiting, processing, streaming, stopped\n     }\n     ```\n   \n3. **`stream_error`**\n   - **설명**: 영상 가공 및 프레임 처리 과정에서 예외/오류가 발생했을 때 전달합니다.\n   - **데이터 규격**:\n     ```json\n     {\n       \"code\": \"PROCESSING_FAILED\",\n       \"message\": \"AI 프레임 가공에 실패하였습니다.\"\n     }\n     ```",
+        "summary": "실시간 통신 (Socket.io) 명세서",
+        "tags": [
+          "Real-time (Socket.io)"
+        ]
       }
     }
-  }
+  },
+  "swagger": "2.0"
 }
