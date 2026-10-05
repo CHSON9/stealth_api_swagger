@@ -120,6 +120,10 @@
                         "example": "/uploads/persons/chaehyeon_01.jpg",
                         "type": "string"
                       },
+                      "is_representative": {
+                        "example": true,
+                        "type": "boolean"
+                      },
                       "photo_id": {
                         "example": "photo_01",
                         "type": "string"
