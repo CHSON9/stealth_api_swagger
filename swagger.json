@@ -1,7 +1,5 @@
 {
-  "definitions": {
-
-  },
+  "definitions": {},
   "info": {
     "description": "powered by Flasgger",
     "termsOfService": "/tos",
@@ -11,17 +9,17 @@
   "paths": {
     "/api/persons": {
       "get": {
-        "description": "사전 등록된 인물 3명(채현, 은아, 혜민)의 기본 정보 및 대표 사진 URL을 조회",
+        "description": "\uc0ac\uc804 \ub4f1\ub85d\ub41c \uc778\ubb3c 3\uba85(\ucc44\ud604, \uc740\uc544, \ud61c\ubbfc)\uc758 \uae30\ubcf8 \uc815\ubcf4 \ubc0f \ub300\ud45c \uc0ac\uc9c4 URL\uc744 \uc870\ud68c",
         "responses": {
           "200": {
-            "description": "인물 목록 조회 성공",
+            "description": "\uc778\ubb3c \ubaa9\ub85d \uc870\ud68c \uc131\uacf5",
             "schema": {
               "properties": {
                 "persons": {
                   "items": {
                     "properties": {
                       "name": {
-                        "example": "채현",
+                        "example": "\ucc44\ud604",
                         "type": "string"
                       },
                       "person_id": {
@@ -44,10 +42,10 @@
             }
           },
           "500": {
-            "description": "서버 내부 에러"
+            "description": "\uc11c\ubc84 \ub0b4\ubd80 \uc5d0\ub7ec"
           }
         },
-        "summary": "등록 인물 목록 조회 API",
+        "summary": "\ub4f1\ub85d \uc778\ubb3c \ubaa9\ub85d \uc870\ud68c API",
         "tags": [
           "Persons"
         ]
@@ -56,17 +54,17 @@
         "consumes": [
           "multipart/form-data"
         ],
-        "description": "새로운 인물의 이름과 사진 파일들(20~30장)을 multipart/form-data로 받아 서버 및 DB에 신규 등록",
+        "description": "\uc0c8\ub85c\uc6b4 \uc778\ubb3c\uc758 \uc774\ub984\uacfc \uc0ac\uc9c4 \ud30c\uc77c\ub4e4(20~30\uc7a5)\uc744 multipart/form-data\ub85c \ubc1b\uc544 \uc11c\ubc84 \ubc0f DB\uc5d0 \uc2e0\uaddc \ub4f1\ub85d",
         "parameters": [
           {
-            "description": "등록할 인물의 이름 (예; 채현)",
+            "description": "\ub4f1\ub85d\ud560 \uc778\ubb3c\uc758 \uc774\ub984 (\uc608; \ucc44\ud604)",
             "in": "formData",
             "name": "name",
             "required": true,
             "type": "string"
           },
           {
-            "description": "업로드할 인물 사진 파일들 (다중 선택 가능)",
+            "description": "\uc5c5\ub85c\ub4dc\ud560 \uc778\ubb3c \uc0ac\uc9c4 \ud30c\uc77c\ub4e4 (\ub2e4\uc911 \uc120\ud0dd \uac00\ub2a5)",
             "in": "formData",
             "name": "photos",
             "required": true,
@@ -75,16 +73,16 @@
         ],
         "responses": {
           "201": {
-            "description": "인물 등록 성공"
+            "description": "\uc778\ubb3c \ub4f1\ub85d \uc131\uacf5"
           },
           "400": {
-            "description": "필수 입력값 또는 유효한 파일 누락"
+            "description": "\ud544\uc218 \uc785\ub825\uac12 \ub610\ub294 \uc720\ud6a8\ud55c \ud30c\uc77c \ub204\ub77d"
           },
           "500": {
-            "description": "서버 내부 에러"
+            "description": "\uc11c\ubc84 \ub0b4\ubd80 \uc5d0\ub7ec"
           }
         },
-        "summary": "인물 신규 등록 API",
+        "summary": "\uc778\ubb3c \uc2e0\uaddc \ub4f1\ub85d API",
         "tags": [
           "Persons"
         ]
@@ -92,10 +90,10 @@
     },
     "/api/persons/{person_id}/photos": {
       "get": {
-        "description": "선택한 인물(person_id)의 등록된 전체 사진(20~30장) 목록을 조회",
+        "description": "\uc120\ud0dd\ud55c \uc778\ubb3c(person_id)\uc758 \ub4f1\ub85d\ub41c \uc804\uccb4 \uc0ac\uc9c4(20~30\uc7a5) \ubaa9\ub85d\uc744 \uc870\ud68c",
         "parameters": [
           {
-            "description": "조회할 인물의 고유 식별자 (예; person_01)",
+            "description": "\uc870\ud68c\ud560 \uc778\ubb3c\uc758 \uace0\uc720 \uc2dd\ubcc4\uc790 (\uc608; person_01)",
             "in": "path",
             "name": "person_id",
             "required": true,
@@ -104,11 +102,11 @@
         ],
         "responses": {
           "200": {
-            "description": "사진 목록 조회 성공",
+            "description": "\uc0ac\uc9c4 \ubaa9\ub85d \uc870\ud68c \uc131\uacf5",
             "schema": {
               "properties": {
                 "name": {
-                  "example": "채현",
+                  "example": "\ucc44\ud604",
                   "type": "string"
                 },
                 "person_id": {
@@ -138,13 +136,13 @@
             }
           },
           "404": {
-            "description": "해당 인물을 찾을 수 없음"
+            "description": "\ud574\ub2f9 \uc778\ubb3c\uc744 \ucc3e\uc744 \uc218 \uc5c6\uc74c"
           },
           "500": {
-            "description": "서버 내부 에러"
+            "description": "\uc11c\ubc84 \ub0b4\ubd80 \uc5d0\ub7ec"
           }
         },
-        "summary": "인물별 등록 사진 조회 API",
+        "summary": "\uc778\ubb3c\ubcc4 \ub4f1\ub85d \uc0ac\uc9c4 \uc870\ud68c API",
         "tags": [
           "Persons"
         ]
@@ -152,10 +150,10 @@
     },
     "/api/photos/{photo_id}/representative": {
       "patch": {
-        "description": "선택한 사진(photo_id)을 인물의 새로운 대표 사진으로 지정",
+        "description": "\uc120\ud0dd\ud55c \uc0ac\uc9c4(photo_id)\uc744 \uc778\ubb3c\uc758 \uc0c8\ub85c\uc6b4 \ub300\ud45c \uc0ac\uc9c4\uc73c\ub85c \uc9c0\uc815",
         "parameters": [
           {
-            "description": "대표 사진으로 지정할 사진의 photo_id",
+            "description": "\ub300\ud45c \uc0ac\uc9c4\uc73c\ub85c \uc9c0\uc815\ud560 \uc0ac\uc9c4\uc758 photo_id",
             "in": "path",
             "name": "photo_id",
             "required": true,
@@ -164,16 +162,16 @@
         ],
         "responses": {
           "200": {
-            "description": "대표 사진 변경 성공"
+            "description": "\ub300\ud45c \uc0ac\uc9c4 \ubcc0\uacbd \uc131\uacf5"
           },
           "404": {
-            "description": "해당 사진을 찾을 수 없음"
+            "description": "\ud574\ub2f9 \uc0ac\uc9c4\uc744 \ucc3e\uc744 \uc218 \uc5c6\uc74c"
           },
           "500": {
-            "description": "서버 내부 에러"
+            "description": "\uc11c\ubc84 \ub0b4\ubd80 \uc5d0\ub7ec"
           }
         },
-        "summary": "대표 사진 변경 API",
+        "summary": "\ub300\ud45c \uc0ac\uc9c4 \ubcc0\uacbd API",
         "tags": [
           "Photos"
         ]
@@ -181,8 +179,8 @@
     },
     "/socket_docs": {
       "get": {
-        "description": "이 섹션은 2학기 이동형 카메라 투명화 비전 시스템의 Socket.io 이벤트를 정의\n\n### [1] 클라이언트 -\u003E 서버 (Client -\u003E Server Events)\n\n1. **`register_client`**\n   - **설명**: 프론트 접속 시 기기 역할(핸드폰/노트북)을 등록\n   - **데이터 규격**:\n     ```json\n     {\n       \"role\": \"sender\" // 핸드폰(송출자)일 경우 \"sender\", 노트북(시청자)일 경우 \"viewer\"\n     }\n     ```\n   \n2. **`image_frame`**\n   - **설명**: 핸드폰 카메라 웹뷰에서 원본 이미지 프레임을 초당 송출\n   - **데이터 규격**:\n     ```json\n     {\n       \"image\": \"data:image/jpeg;base64,.....(Base64 문자열)\",\n       \"camera_id\": \"cam1\"\n     }\n     ```\n     \n---\n\n### [2] 서버 -\u003E 클라이언트 (Server -\u003E Client Events)\n\n1. **`processed_frame`**\n   - **설명**: AI 파이프라인에서 투명화/배경복원이 완료된 처리 영상 프레임을 노트북(`viewer`)으로 전송\n   - **데이터 규격**:\n     ```json\n     {\n       \"result_image\": \"data:image/jpeg;base64,.....(Base64 문자열)\"\n     }\n     ```\n   \n2. **`stream_status`**\n   - **설명**: 현재 영상 처리 및 송출 상태를 알려줌\n   - **데이터 규격**:\n     ```json\n     {\n       \"status\": \"streaming\" // waiting, processing, streaming, stopped\n     }\n     ```\n   \n3. **`stream_error`**\n   - **설명**: 영상 가공 및 프레임 처리 과정에서 예외/오류가 발생했을 때 전달\n   - **데이터 규격**:\n     ```json\n     {\n       \"code\": \"PROCESSING_FAILED\",\n       \"message\": \"AI 프레임 가공 실패.\"\n     }\n     ```",
-        "summary": "실시간 통신 (Socket.io) 명세서",
+        "description": "\uc774 \uc139\uc158\uc740 2\ud559\uae30 \uc774\ub3d9\ud615 \uce74\uba54\ub77c \ud22c\uba85\ud654 \ube44\uc804 \uc2dc\uc2a4\ud15c\uc758 Socket.io \uc774\ubca4\ud2b8\ub97c \uc815\uc758\n\n### [1] \ud074\ub77c\uc774\uc5b8\ud2b8 -> \uc11c\ubc84 (Client -> Server Events)\n\n1. **`register_client`**\n   - **\uc124\uba85**: \ud504\ub860\ud2b8 \uc811\uc18d \uc2dc \uae30\uae30 \uc5ed\ud560(\ud578\ub4dc\ud3f0/\ub178\ud2b8\ubd81)\uc744 \ub4f1\ub85d\n   - **\ub370\uc774\ud130 \uaddc\uaca9**:\n     ```json\n     {\n       \"role\": \"sender\" // \ud578\ub4dc\ud3f0(\uc1a1\ucd9c\uc790)\uc77c \uacbd\uc6b0 \"sender\", \ub178\ud2b8\ubd81(\uc2dc\uccad\uc790)\uc77c \uacbd\uc6b0 \"viewer\"\n     }\n     ```\n   \n2. **`image_frame`**\n   - **\uc124\uba85**: \ud578\ub4dc\ud3f0 \uce74\uba54\ub77c \uc6f9\ubdf0\uc5d0\uc11c \uc6d0\ubcf8 \uc774\ubbf8\uc9c0 \ud504\ub808\uc784\uc744 \ucd08\ub2f9 \uc1a1\ucd9c\n   - **\ub370\uc774\ud130 \uaddc\uaca9**:\n     ```json\n     {\n       \"image\": \"data:image/jpeg;base64,.....(Base64 \ubb38\uc790\uc5f4)\",\n       \"camera_id\": \"cam1\"\n     }\n     ```\n     \n---\n\n### [2] \uc11c\ubc84 -> \ud074\ub77c\uc774\uc5b8\ud2b8 (Server -> Client Events)\n\n1. **`processed_frame`**\n   - **\uc124\uba85**: AI \ud30c\uc774\ud504\ub77c\uc778\uc5d0\uc11c \ud22c\uba85\ud654/\ubc30\uacbd\ubcf5\uc6d0\uc774 \uc644\ub8cc\ub41c \ucc98\ub9ac \uc601\uc0c1 \ud504\ub808\uc784\uc744 \ub178\ud2b8\ubd81(`viewer`)\uc73c\ub85c \uc804\uc1a1\n   - **\ub370\uc774\ud130 \uaddc\uaca9**:\n     ```json\n     {\n       \"result_image\": \"data:image/jpeg;base64,.....(Base64 \ubb38\uc790\uc5f4)\"\n     }\n     ```\n   \n2. **`stream_status`**\n   - **\uc124\uba85**: \ud604\uc7ac \uc601\uc0c1 \ucc98\ub9ac \ubc0f \uc1a1\ucd9c \uc0c1\ud0dc\ub97c \uc54c\ub824\uc90c\n   - **\ub370\uc774\ud130 \uaddc\uaca9**:\n     ```json\n     {\n       \"status\": \"streaming\" // waiting, processing, streaming, stopped\n     }\n     ```\n   \n3. **`stream_error`**\n   - **\uc124\uba85**: \uc601\uc0c1 \uac00\uacf5 \ubc0f \ud504\ub808\uc784 \ucc98\ub9ac \uacfc\uc815\uc5d0\uc11c \uc608\uc678/\uc624\ub958\uac00 \ubc1c\uc0dd\ud588\uc744 \ub54c \uc804\ub2ec\n   - **\ub370\uc774\ud130 \uaddc\uaca9**:\n     ```json\n     {\n       \"code\": \"PROCESSING_FAILED\",\n       \"message\": \"AI \ud504\ub808\uc784 \uac00\uacf5 \uc2e4\ud328.\"\n     }\n     ```",
+        "summary": "\uc2e4\uc2dc\uac04 \ud1b5\uc2e0 (Socket.io) \uba85\uc138\uc11c",
         "tags": [
           "Real-time (Socket.io)"
         ]
